@@ -1,9 +1,11 @@
-local Tunnel = module("vrp","lib/Tunnel")
-local Proxy = module("vrp","lib/Proxy")
-vRP = Proxy.getInterface("vRP")
-vRPclient = Tunnel.getInterface("vRP")
-
- local botaodh = false
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- veiculo rgb Desenvilvido por : D1guinh0
+-----------------------------------------------------------------------------------------------------------------------------------------
+local botaodh = false
+local dhtemp = 1
+local r = 0
+local g = 0
+local b = 0
 
 RegisterNetEvent("DH")
 AddEventHandler("DH",function()
@@ -15,6 +17,34 @@ AddEventHandler("DH",function()
     end
 end)
 
+CreateThread (function()
+    repeat
+        repeat 
+            r = r + 1
+            Wait(dhtemp)
+        until r >= 250
+        repeat 
+            g = g + 1
+            Wait(dhtemp)
+        until g >= 250
+        repeat 
+            b = b + 1
+            Wait(dhtemp)
+        until b >= 250
+        repeat
+            r = r -1
+            Wait(dhtemp)
+        until r <= 1
+        repeat
+            g = g -1
+            Wait(dhtemp)
+        until g <= 1
+        repeat
+            b = b -1
+            Wait(dhtemp)
+        until b <= 1
+    until false
+end)
 
 Citizen.CreateThread(function()
     repeat
@@ -22,35 +52,7 @@ Citizen.CreateThread(function()
         local peddh = PlayerPedId()
         local vehicle = GetVehiclePedIsIn(peddh,true)
         if botaodh then
-            local dhtemp = 1
-            local r = 0
-            local g = 0
-            local b = 0
-            repeat 
-                r = r + 1
-                Wait(dhtemp)
-            until r >= 250
-            repeat 
-                g = g + 1
-                Wait(dhtemp)
-            until g >= 250
-            repeat 
-                b = b + 1
-                Wait(dhtemp)
-            until b >= 250
-            repeat
-                r = r -1
-                Wait(dhtemp)
-            until r <= 1
-            repeat
-                g = g -1
-                Wait(dhtemp)
-            until g <= 1
-            repeat
-                b = b -1
-                Wait(dhtemp)
-            until b <= 1   
-            SetVehicleCustomPrimaryColour(vehicle, r,g,b)
+            SetVehicleCustomPrimaryColour(vehicle,r,g,b)
             SetVehicleCustomSecondaryColour(vehicle,r,g,b)
         end
     until false
